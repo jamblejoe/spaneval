@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm", "wheel"]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+
+[project]
+name = "spaneval"
+description = "Evaluation library for span-level entity extraction"
+dynamic = ["version"]
+authors = [{ name = "Goran Nakerst" }]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+requires-python = ">= 3.11"
+readme = "README.md"
+dependencies = ["tabulate>=0.9.0,<0.10"]
+
+[project.urls]
+repository = "https://github.com/jamblejoe/spaneval"
+
+[tool.setuptools.packages.find]
+include = ["spaneval*"]
+namespaces = false
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
