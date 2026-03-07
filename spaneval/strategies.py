@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
+from collections.abc import Iterable
 from dataclasses import dataclass, field
-from typing import Iterable, override
+try:
+    from typing import override
+except ImportError:  # Python < 3.12
+    def override(f):  # type: ignore[misc]
+        return f
 
 from .entity import Entity, Match, get_entity_types_from_matches
 from .metrics import DocumentMetrics
