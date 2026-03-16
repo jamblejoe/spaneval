@@ -106,27 +106,45 @@ class Results:
             for entity_type in self.entity_types
         }
 
-    def score(self, goals: dict[str, "Goal"]) -> float:
+    def score(self, goals: dict[str, "Goal"], require_all_types: bool = False) -> float:
         """Return the bottleneck goal score: min over all normalised per-type
         precision and recall scores.
 
         A score of 1.0 means exactly on target; > 1.0 means above target
         (uncapped). The optimizer must fix the weakest type/metric first.
 
+        Args:
+            goals: Per-type goals to score against.
+            require_all_types: If ``True``, raise when a goal type is absent
+                from the results — useful for catching typos at the dataset
+                level. If ``False`` (default), absent types are silently
+                skipped.
+
+        Returns:
+            1.0 if all goal types are absent from the results and
+            ``require_all_types=False`` — no entities to evaluate, all goals
+            trivially met.
+
         Raises:
-            ValueError: if any key in ``goals`` is not present in the results.
+            ValueError: If ``goals`` is empty, or if ``require_all_types=True``
+                and any goal type is not present in the results.
         """
         if not goals:
             raise ValueError("goals must not be empty")
-        phantom = set(goals) - set(self.entity_types)
-        if phantom:
+
+        missing = set(goals) - set(self.entity_types)
+        if missing and require_all_types:
             raise ValueError(
-                f"Goal specified for unknown entity types: {phantom}. "
+                f"Goal specified for unknown entity types: {missing}. "
                 "These types were not found in the evaluation results."
             )
 
+        active_goals = {k: v for k, v in goals.items() if k in self.entity_types}
+        if not active_goals:
+            return 1.0
+
         scores = []
-        for entity_type, goal in goals.items():
+        for entity_type, goal in active_goals.items():
             m = self._type_metrics(goal.strategy, entity_type)
             scores.append(m.recall / goal.recall)
             scores.append(m.precision / goal.precision)
