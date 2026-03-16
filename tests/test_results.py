@@ -182,12 +182,21 @@ def test_score_is_uncapped_when_metrics_exceed_targets(two_type_results):
     assert score > 1.0
 
 
-def test_score_raises_for_phantom_entity_type(two_type_results):
-    # A type in goals that is absent from the evaluation results must raise
-    # a ValueError naming the phantom type.
+def test_score_returns_one_when_all_goal_types_absent_by_default(two_type_results):
+    # When all goal types are absent from the results, score() returns 1.0 by
+    # default (require_all_types=False) — nothing to find, goals trivially met.
+    assert two_type_results.score(
+        {"PHONE": Goal(strategy=Strict(), recall=0.9, precision=0.8)}
+    ) == 1.0
+
+
+def test_score_raises_naming_phantom_type_when_required(two_type_results):
+    # With require_all_types=True, score() raises a ValueError that names the
+    # phantom type, which helps catch typos in goal type names.
     with pytest.raises(ValueError, match="PHONE"):
         two_type_results.score(
-            {"PHONE": Goal(strategy=Strict(), recall=0.9, precision=0.8)}
+            {"PHONE": Goal(strategy=Strict(), recall=0.9, precision=0.8)},
+            require_all_types=True,
         )
 
 
