@@ -257,11 +257,34 @@ def get_entity_types_from_matches(matches:Iterable[Match])->list[str]:
     return sorted(entity_types)
 
 
-def to_entities(dicts: list[dict]) -> list[Entity]:
-    """Convert a list of dicts to a list of Entity objects. Validates at call site."""
+def _apply_field_names(d: dict, field_names: dict[str, str]) -> dict:
+    """Remap dict keys according to field_names (source name → spaneval name)."""
+    return {field_names.get(k, k): v for k, v in d.items()}
+
+
+def to_entities(dicts: list[dict], field_names: dict[str, str] | None = None) -> list[Entity]:
+    """Convert a list of dicts to a list of Entity objects. Validates at call site.
+
+    Args:
+        dicts: List of dicts with entity data.
+        field_names: Optional mapping from source field names to spaneval field names.
+            Only non-standard fields need to be listed. For example, to read spaCy
+            output: ``field_names={"label_": "entity_type", "start_char": "start",
+            "end_char": "end"}``.
+    """
+    if field_names:
+        dicts = [_apply_field_names(d, field_names) for d in dicts]
     return [Entity.from_dict(d) for d in dicts]
 
 
-def to_documents(dicts: list[list[dict]]) -> list[list[Entity]]:
-    """Convert a list of per-document dict lists to a list of per-document Entity lists."""
+def to_documents(dicts: list[list[dict]], field_names: dict[str, str] | None = None) -> list[list[Entity]]:
+    """Convert a list of per-document dict lists to a list of per-document Entity lists.
+
+    Args:
+        dicts: List of per-document dict lists.
+        field_names: Optional mapping from source field names to spaneval field names.
+            Only non-standard fields need to be listed. See :func:`to_entities`.
+    """
+    if field_names:
+        dicts = [[_apply_field_names(d, field_names) for d in doc] for doc in dicts]
     return [[Entity.from_dict(d) for d in doc] for doc in dicts]
