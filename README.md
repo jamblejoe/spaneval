@@ -14,7 +14,7 @@ pip install spaneval
 
 **seqeval** works on IOB/BIO token sequences. LLMs output character spans — converting between the two is lossy and inconvenient.
 
-**nervaluate** is the closest prior work and covers the SemEval 2013 strategies well. This library extends the same foundation with configurable overlap thresholds, per-type strategy assignment, and `score()` — a scalar optimization target for automated prompt engineering and hyperparameter search.
+**nervaluate** is the closest prior work and covers the SemEval 2013 strategies well. This library extends the same foundation with configurable overlap thresholds, per-type strategy assignment, and `score()` — a scalar optimization target for automated prompt engineering and hyperparameter search. Precision, recall, and F1 for the four shared strategies (`Strict`, `Exact`, `EntType`, `Partial`) are verified to match nervaluate on identical inputs.
 
 ## Quickstart
 
