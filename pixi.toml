@@ -9,7 +9,7 @@ spaneval = { path = ".", editable = true }
 
 [dependencies]
 python = ">=3.11"
-tabulate = ">=0.9.0,<0.10"
+tabulate = ">=0.9.0,<0.11"
 
 [feature.dev.dependencies]
 psutil = ">=7.2.2,<8"
