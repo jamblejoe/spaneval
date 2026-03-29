@@ -1,6 +1,6 @@
 import pytest
 
-from spaneval.entity import Entity
+from spaneval.entity import Entity, to_entities, to_documents
 
 
 def test_entity_start_greater_than_end():
@@ -115,3 +115,40 @@ def test_entity_from_dict_missing_optional_keys_default_to_none():
     assert entity.end == 20
     assert entity.original_text is None
     assert entity.replacement_text is None
+
+
+def test_to_entities_field_names_remaps_all_required_fields():
+    # field_names remaps source keys to spaneval's canonical names before parsing.
+    dicts = [{"label_": "PERSON", "start_char": 0, "end_char": 10}]
+    entities = to_entities(dicts, field_names={"label_": "entity_type", "start_char": "start", "end_char": "end"})
+    assert len(entities) == 1
+    assert entities[0].entity_type == "PERSON"
+    assert entities[0].start == 0
+    assert entities[0].end == 10
+
+
+def test_to_entities_field_names_partial_remap():
+    # Only non-standard fields need to be listed; standard fields pass through unchanged.
+    dicts = [{"label": "ORG", "start": 5, "end": 15}]
+    entities = to_entities(dicts, field_names={"label": "entity_type"})
+    assert entities[0].entity_type == "ORG"
+    assert entities[0].start == 5
+    assert entities[0].end == 15
+
+
+def test_to_entities_without_field_names_unchanged():
+    # Omitting field_names preserves existing behaviour.
+    dicts = [{"entity_type": "LOC", "start": 0, "end": 4}]
+    entities = to_entities(dicts)
+    assert entities[0].entity_type == "LOC"
+
+
+def test_to_documents_field_names_remaps_across_documents():
+    # field_names applies uniformly across all documents.
+    dicts = [
+        [{"label_": "PERSON", "start_char": 0, "end_char": 4}],
+        [{"label_": "ORG", "start_char": 10, "end_char": 16}],
+    ]
+    documents = to_documents(dicts, field_names={"label_": "entity_type", "start_char": "start", "end_char": "end"})
+    assert documents[0][0].entity_type == "PERSON"
+    assert documents[1][0].entity_type == "ORG"

@@ -49,6 +49,14 @@ raw_doc = [
 ]
 doc = to_entities(raw_doc)
 
+# If your framework uses different field names (spaCy, HuggingFace, etc.), pass
+# field_names to remap them — no pre-processing needed:
+
+# spaCy:       to_entities(dicts, field_names={"label_": "entity_type", "start_char": "start", "end_char": "end"})
+# HuggingFace: to_entities(dicts, field_names={"entity_group": "entity_type"})
+
+# Only non-standard fields need to be listed; the rest pass through unchanged.
+
 # For multi-document data use to_documents():
 # from spaneval import to_documents
 # doc_true = to_documents(raw_true)   # raw_true: list[list[dict]]
