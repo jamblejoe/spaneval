@@ -78,6 +78,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.6.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zeromq-4.3.5-h41580af_10.conda
       - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-h3691f8a_5.conda
+      - pypi: https://files.pythonhosted.org/packages/05/b0/dcb6abebc5906c0c74d07a34dedc9429a38a3a847afb56d71c19a86bec47/nervaluate-1.2.1-py3-none-any.whl
       - pypi: ./
       osx-64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_2.conda
@@ -144,6 +145,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/tzdata-2025b-h78e105d_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.6.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zeromq-4.3.5-h27d9b8f_10.conda
+      - pypi: https://files.pythonhosted.org/packages/05/b0/dcb6abebc5906c0c74d07a34dedc9429a38a3a847afb56d71c19a86bec47/nervaluate-1.2.1-py3-none-any.whl
       - pypi: ./
       osx-arm64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_2.conda
@@ -211,6 +213,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.6.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zeromq-4.3.5-h4818236_10.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hd0aec43_5.conda
+      - pypi: https://files.pythonhosted.org/packages/05/b0/dcb6abebc5906c0c74d07a34dedc9429a38a3a847afb56d71c19a86bec47/nervaluate-1.2.1-py3-none-any.whl
       - pypi: ./
       win-64:
       - conda: https://conda.anaconda.org/conda-forge/noarch/_python_abi3_support-1.0-hd8ed1ab_2.conda
@@ -275,6 +278,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/wcwidth-0.6.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zeromq-4.3.5-h507cc87_10.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h1b5488d_5.conda
+      - pypi: https://files.pythonhosted.org/packages/05/b0/dcb6abebc5906c0c74d07a34dedc9429a38a3a847afb56d71c19a86bec47/nervaluate-1.2.1-py3-none-any.whl
       - pypi: ./
   dspy:
     channels:
@@ -3284,6 +3288,20 @@ packages:
   purls: []
   size: 797030
   timestamp: 1738196177597
+- pypi: https://files.pythonhosted.org/packages/05/b0/dcb6abebc5906c0c74d07a34dedc9429a38a3a847afb56d71c19a86bec47/nervaluate-1.2.1-py3-none-any.whl
+  name: nervaluate
+  version: 1.2.1
+  sha256: f7401943620ea312eb2253983f27b646f6d0cbfff3105037c3d7125317e522a3
+  requires_dist:
+  - black>=25.1.0 ; extra == 'dev'
+  - coverage>=7.8.0 ; extra == 'dev'
+  - gitchangelog ; extra == 'dev'
+  - mypy>=1.15.0 ; extra == 'dev'
+  - pre-commit==3.3.1 ; extra == 'dev'
+  - pylint>=3.3.7 ; extra == 'dev'
+  - pytest>=8.3.5 ; extra == 'dev'
+  - pytest-cov>=6.1.1 ; extra == 'dev'
+  requires_python: '>=3.11'
 - conda: https://conda.anaconda.org/conda-forge/noarch/nest-asyncio-1.6.0-pyhd8ed1ab_1.conda
   sha256: bb7b21d7fd0445ddc0631f64e66d91a179de4ba920b8381f29b9d006a42788c0
   md5: 598fd7d4d0de2455fb74f56063969a97
@@ -4641,18 +4659,10 @@ packages:
   requires_python: '>=3.7'
 - pypi: ./
   name: spaneval
-  version: 0.0.post82+gb5e059046.d20260306
-  sha256: a6b31f62fe9e9d1be2f1c6dc5413c37a3640cacd9740f9b52546b111d67d58f5
+  version: 0.2.1.post0+geeae4a097.d20260329
+  sha256: 09431366aa2f9bc4827babc568e05b443d488600070f5feabf9bdfafafb04077
   requires_dist:
-  - tabulate>=0.9.0,<0.10
-  requires_python: '>=3.11'
-  editable: true
-- pypi: ./
-  name: spaneval
-  version: 0.1.0.post0+g19fb9bc7f.d20260316
-  sha256: a6b31f62fe9e9d1be2f1c6dc5413c37a3640cacd9740f9b52546b111d67d58f5
-  requires_dist:
-  - tabulate>=0.9.0,<0.10
+  - tabulate>=0.9.0,<0.11
   requires_python: '>=3.11'
   editable: true
 - pypi: https://files.pythonhosted.org/packages/46/2c/9664130905f03db57961b8980b05cab624afd114bf2be2576628a9f22da4/sqlalchemy-2.0.48-py3-none-any.whl
