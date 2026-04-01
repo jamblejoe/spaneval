@@ -38,8 +38,8 @@ results.report()
 
 For a guided walkthrough, see the examples:
 
-- `examples/quickstart.py` — five steps from zero-config to per-type strategy assignment
-- `examples/goals.py` — two steps from goal definition to automated prompt optimization
+- `examples/quickstart.ipynb` — seven steps from zero-config to automated prompt optimization
+- `examples/dspy.ipynb` — full prompt-optimisation workflow using DSPy
 
 ## Strategies
 

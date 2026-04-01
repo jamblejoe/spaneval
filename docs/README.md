@@ -1,6 +1,6 @@
 # Reference
 
-Conceptual and API reference for spaneval. For a hands-on introduction, start with `examples/quickstart.py`.
+Conceptual and API reference for spaneval. For a hands-on introduction, start with `examples/quickstart.ipynb`.
 
 | Document | Content |
 |---|---|

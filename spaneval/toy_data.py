@@ -13,7 +13,7 @@ from .entity import Entity
 
 def _e(text: str, substr: str, entity_type: str) -> Entity:
     start = text.index(substr)
-    return Entity(entity_type=entity_type, start=start, end=start + len(substr))
+    return Entity(entity_type=entity_type, start=start, end=start + len(substr), original_text=substr)
 
 
 _T0 = "Anna Weber filed a complaint with Proxima AG on 12 March 2023."

@@ -14,6 +14,12 @@ tabulate = ">=0.9.0,<0.11"
 [feature.dev.dependencies]
 psutil = ">=7.2.2,<8"
 ipykernel = ">=7.2.0,<8"
+nbconvert = ">=7.17.0,<8"
+jupytext = ">=1.19.1,<2"
+
+[feature.dev.tasks]
+install-kernel = "python -m ipykernel install --user --name spaneval-pixi --display-name 'spaneval (pixi)'"
+render-examples = { depends-on = ["install-kernel"], cmd = "jupyter nbconvert --to notebook --execute --allow-errors --inplace --ExecutePreprocessor.kernel_name=spaneval-pixi examples/quickstart.ipynb" }
 
 [feature.test.dependencies]
 pytest = ">=6"
