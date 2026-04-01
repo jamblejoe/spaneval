@@ -1,6 +1,6 @@
 # Reference
 
-Conceptual and API reference for spaneval. For a hands-on introduction, start with `examples/quickstart.ipynb`.
+Conceptual and API reference for spaneval. For a hands-on introduction, start with `examples/quickstart.ipynb`. Check out the other examples as well like `examples/dspy.ipynb` for a full prompt-optimization workflow using DSPy.
 
 | Document | Content |
 |---|---|
