@@ -266,7 +266,7 @@ class Results:
                 f"{rec_mid:3} ± {rec_dist:2}",
             ])
 
-        headers = ["Entity Type", "Number", "Missed", "Spurious", "Precision (%)", "Recall (%)"]
+        headers = ["Entity Type", "Total", "Missed", "Spurious", "Precision (%)", "Recall (%)"]
         print(tabulate(data, headers=headers, tablefmt="plain", stralign="right"))
 
     def _report_single_strategy(self, strategy: EvaluationStrategy) -> None:
@@ -290,7 +290,7 @@ class Results:
                 f"{round(m.f1        * 100):3}",
             ])
 
-        headers = ["Entity Type", "Number", "Missed", "Spurious", "Precision (%)", "Recall (%)", "F1 (%)"]
+        headers = ["Entity Type", "Total", "Missed", "Spurious", "Precision (%)", "Recall (%)", "F1 (%)"]
         print(tabulate(data, headers=headers, tablefmt="plain", stralign="right"))
 
     def _report_per_type(
@@ -320,7 +320,7 @@ class Results:
                 f"{round(m.f1        * 100):3}",
             ])
 
-        headers = ["Entity Type", "Strategy", "Number", "Missed", "Spurious", "Precision (%)", "Recall (%)", "F1 (%)"]
+        headers = ["Entity Type", "Strategy", "Total", "Missed", "Spurious", "Precision (%)", "Recall (%)", "F1 (%)"]
         print(tabulate(data, headers=headers, tablefmt="plain", stralign="right"))
 
     @property
